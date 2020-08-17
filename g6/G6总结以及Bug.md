@@ -74,4 +74,11 @@
 -   拖拽报错(一直未解决)使用内置边与节点都报错
 -   label 重叠(middle)
 -   多个连接器在同侧需要后端配合(后续提供数据结构)
--
+
+## 5.changeData()报错，改为 graph.paint()
+
+![](img/destroy%20of%20undefined.png)
+![](img/graph-paint.png)
+
+但是 paint 只能更新当前 id 相同的节点边等，更新数据源不会重绘
+报错原因是数据源出现的问题，线的 target 指向了不存在节点

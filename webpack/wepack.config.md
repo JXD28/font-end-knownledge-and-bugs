@@ -238,13 +238,14 @@ plugins: [
   - 问题:有100个js模块,只改了1个文件,那么其他99个文件也得重新构建一次
   - 解决:缓存
     - babel缓存
-    - ![](img/babel%E7%BC%93%E5%AD%98.png)
-    - 文件资源缓存
+     ![](img/babel%E7%BC%93%E5%AD%98.png)
+    - 文件资源缓存(只有资源名称改变的时候才不会缓存)
     - 输出文件加上hash:但是如果重新打包,会导致所有缓存失败(只改了一个文件)
     - 解决办法:chunkhash:根据chunk生成的hash.如果打包来源于同一个chunk,那么hash值就一样:但是由于css与js同属一个chunk
     - 解决办法:contenthash:根据文件内容生成hash.不同文件的hash值一定不一样
-    - ![](img/%E6%B7%BB%E5%8A%A0hash.png)
-    - ![](img/css-hash.png)
+    ![](img/%E6%B7%BB%E5%8A%A0hash.png)
+    ![](img/css-hash.png)
+    ![](img/contenthash.png)
 - 优化代码运行性能
   - Tree shaking 树摇（去除没有使用的代码
       - 基本上生产环境下使用es6模块引用会自动使用
@@ -279,7 +280,7 @@ plugins: [
 };
 ```
   - 使用splitChunks(多入口文件有没有共同的依赖)
-  - ![](img/splitChunks.png)
+  ![](img/splitChunks.png)
   - 单独打包文件
 ```js
 //index.js
@@ -316,3 +317,19 @@ import(/* webpackChunkName:'test' */'./test')//返回promisr对象
     console.log(e)
   })
 ```
+## 懒加载:利用webpack代码分割,将其放在异步操作里
+![](img/%E6%87%92%E5%8A%A0%E8%BD%BD.png)
+## 预加载:正常加载是并行加载,同一时间加载多个文件.预加载是在浏览器空闲的时候偷偷加载(浏览器兼容性比较差)
+![](img/%E9%A2%84%E5%8A%A0%E8%BD%BD.png)
+区别:懒加载->当文件比较大,点击按钮可能会加载很长时间
+     预加载不会出现
+## PWA:离线模式,可以使用部分功能
+## 多进程打包(babel)
+  有利有弊:进程启动600ms 进程通信也有开销
+  只有工作消耗时间比较长,才需要多进程
+  应该适用于大项目，使用babel转化比较多的时候
+## externals 忽略打包XXX:用途:使用标签(CDN)引入的资源
+![](img/externals.png)CDN
+## dll 动态链接库,可以把第三方库分开打包,不用重复打包
+## devServer 详细配置
+![](img/devServer.png)

@@ -281,3 +281,12 @@ function countNumber(initNumber) {
         minusCount
     ]
 ```
+
+## 7.使用 hooks 更新状态，注意引用类型不更新(地址没变)
+
+解决：扩展运算符,复制原引用类型，再添加
+
+```js
+{...obj,name:'rrr'}
+[...array,item]
+```

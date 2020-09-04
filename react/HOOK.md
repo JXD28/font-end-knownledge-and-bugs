@@ -290,3 +290,5 @@ function countNumber(initNumber) {
 {...obj,name:'rrr'}
 [...array,item]
 ```
+
+可以直接改变引用类型的值，不需要视图更新不用 hooks？

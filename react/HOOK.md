@@ -292,3 +292,8 @@ function countNumber(initNumber) {
 ```
 
 可以直接改变引用类型的值，不需要视图更新不用 hooks？
+
+## 8.set 函数取不到值
+
+![](img/hook%E4%B8%8D%E5%90%8C%E6%AD%A5.png)
+原因，不同的 tablecell，在 onFocus 中没有执行 onSelect 函数

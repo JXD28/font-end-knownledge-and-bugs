@@ -297,3 +297,8 @@ function countNumber(initNumber) {
 
 ![](img/hook%E4%B8%8D%E5%90%8C%E6%AD%A5.png)
 原因，不同的 tablecell，在 onFocus 中没有执行 onSelect 函数
+
+## 9. set 函数更新顺序->tree 的渲染
+
+setTreeData 放到下边两个 set 函数中间就不行，可能与组件逻辑有关
+![](img/set%E5%87%BD%E6%95%B0%E9%A1%BA%E5%BA%8F.png)

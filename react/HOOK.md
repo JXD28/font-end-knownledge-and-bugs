@@ -302,3 +302,9 @@ function countNumber(initNumber) {
 
 setTreeData 放到下边两个 set 函数中间就不行，可能与组件逻辑有关
 ![](img/set%E5%87%BD%E6%95%B0%E9%A1%BA%E5%BA%8F.png)
+
+## 10. useRef()
+
+-   于普通的 createRef 的区别：一个函数组件，每执行一次都会重新创建变量，这样 createRef 就会重复创建。而 useRef 是存储在外部的，如果监测到 dom 没有变化，就不会重新创建
+-   useRef 创建的 ref 并不会随着组件的更新而重新构建
+-   于这个特性，在使用 react-hook 的时候，可以使用 useRef 来存储常量。

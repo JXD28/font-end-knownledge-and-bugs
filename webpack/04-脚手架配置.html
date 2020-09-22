@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>脚手架配置</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="脚手架配置">脚手架配置</h1>
+<p>参考文档：<a href="https://www.html.cn/create-react-app/">https://www.html.cn/create-react-app/</a></p>
+<h2 id="1继承-create-react-app-脚手架在其基础上进行完善">1.继承 create-react-app 脚手架，在其基础上进行完善</h2>
+<ul>
+<li>暴露配置</li>
+</ul>
+<p>react 官方脚手架暴露配置之后的插件：</p>
+<p><img src="file:///d:\font-end-knownledge-and-bugs\webpack\img\after-eject.png" alt=""></p>
+<p>通过 package.json 中的信息可以大致看一下，官方脚手架将 webpack 中所依赖的模块已经配置好
+缺少的依赖需要我们自己来手动添加，比如 antd，less，react-router 等</p>
+<pre><code class="language-json"><div>{
+<span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-app"</span>,
+<span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
+<span class="hljs-attr">"private"</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-attr">"dependencies"</span>: {
+  <span class="hljs-attr">"@babel/core"</span>: <span class="hljs-string">"7.9.0"</span>,
+  <span class="hljs-attr">"@svgr/webpack"</span>: <span class="hljs-string">"4.3.3"</span>,
+  <span class="hljs-attr">"@testing-library/jest-dom"</span>: <span class="hljs-string">"^4.2.4"</span>,
+  <span class="hljs-attr">"@testing-library/react"</span>: <span class="hljs-string">"^9.5.0"</span>,
+  <span class="hljs-attr">"@testing-library/user-event"</span>: <span class="hljs-string">"^7.2.1"</span>,
+  <span class="hljs-attr">"@typescript-eslint/eslint-plugin"</span>: <span class="hljs-string">"^2.10.0"</span>,
+  <span class="hljs-attr">"@typescript-eslint/parser"</span>: <span class="hljs-string">"^2.10.0"</span>,
+  <span class="hljs-attr">"babel-eslint"</span>: <span class="hljs-string">"10.1.0"</span>,
+  <span class="hljs-attr">"babel-jest"</span>: <span class="hljs-string">"^24.9.0"</span>,
+  <span class="hljs-attr">"babel-loader"</span>: <span class="hljs-string">"8.1.0"</span>,
+  <span class="hljs-attr">"babel-plugin-named-asset-import"</span>: <span class="hljs-string">"^0.3.6"</span>,
+  <span class="hljs-attr">"babel-preset-react-app"</span>: <span class="hljs-string">"^9.1.2"</span>,
+  <span class="hljs-attr">"camelcase"</span>: <span class="hljs-string">"^5.3.1"</span>,
+  <span class="hljs-attr">"case-sensitive-paths-webpack-plugin"</span>: <span class="hljs-string">"2.3.0"</span>,
+  <span class="hljs-attr">"css-loader"</span>: <span class="hljs-string">"3.4.2"</span>,
+  <span class="hljs-attr">"dotenv"</span>: <span class="hljs-string">"8.2.0"</span>,
+  <span class="hljs-attr">"dotenv-expand"</span>: <span class="hljs-string">"5.1.0"</span>,
+  <span class="hljs-attr">"eslint"</span>: <span class="hljs-string">"^6.6.0"</span>,
+  <span class="hljs-attr">"eslint-config-react-app"</span>: <span class="hljs-string">"^5.2.1"</span>,
+  <span class="hljs-attr">"eslint-loader"</span>: <span class="hljs-string">"3.0.3"</span>,
+  <span class="hljs-attr">"eslint-plugin-flowtype"</span>: <span class="hljs-string">"4.6.0"</span>,
+  <span class="hljs-attr">"eslint-plugin-import"</span>: <span class="hljs-string">"2.20.1"</span>,
+  <span class="hljs-attr">"eslint-plugin-jsx-a11y"</span>: <span class="hljs-string">"6.2.3"</span>,
+  <span class="hljs-attr">"eslint-plugin-react"</span>: <span class="hljs-string">"7.19.0"</span>,
+  <span class="hljs-attr">"eslint-plugin-react-hooks"</span>: <span class="hljs-string">"^1.6.1"</span>,
+  <span class="hljs-attr">"file-loader"</span>: <span class="hljs-string">"4.3.0"</span>,
+  <span class="hljs-attr">"fs-extra"</span>: <span class="hljs-string">"^8.1.0"</span>,
+  <span class="hljs-attr">"html-webpack-plugin"</span>: <span class="hljs-string">"4.0.0-beta.11"</span>,
+  <span class="hljs-attr">"identity-obj-proxy"</span>: <span class="hljs-string">"3.0.0"</span>,
+  <span class="hljs-attr">"jest"</span>: <span class="hljs-string">"24.9.0"</span>,
+  <span class="hljs-attr">"jest-environment-jsdom-fourteen"</span>: <span class="hljs-string">"1.0.1"</span>,
+  <span class="hljs-attr">"jest-resolve"</span>: <span class="hljs-string">"24.9.0"</span>,
+  <span class="hljs-attr">"jest-watch-typeahead"</span>: <span class="hljs-string">"0.4.2"</span>,
+  <span class="hljs-attr">"mini-css-extract-plugin"</span>: <span class="hljs-string">"0.9.0"</span>,
+  <span class="hljs-attr">"optimize-css-assets-webpack-plugin"</span>: <span class="hljs-string">"5.0.3"</span>,
+  <span class="hljs-attr">"pnp-webpack-plugin"</span>: <span class="hljs-string">"1.6.4"</span>,
+  <span class="hljs-attr">"postcss-flexbugs-fixes"</span>: <span class="hljs-string">"4.1.0"</span>,
+  <span class="hljs-attr">"postcss-loader"</span>: <span class="hljs-string">"3.0.0"</span>,
+  <span class="hljs-attr">"postcss-normalize"</span>: <span class="hljs-string">"8.0.1"</span>,
+  <span class="hljs-attr">"postcss-preset-env"</span>: <span class="hljs-string">"6.7.0"</span>,
+  <span class="hljs-attr">"postcss-safe-parser"</span>: <span class="hljs-string">"4.0.1"</span>,
+  <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^16.13.1"</span>,
+  <span class="hljs-attr">"react-app-polyfill"</span>: <span class="hljs-string">"^1.0.6"</span>,
+  <span class="hljs-attr">"react-dev-utils"</span>: <span class="hljs-string">"^10.2.1"</span>,
+  <span class="hljs-attr">"react-dom"</span>: <span class="hljs-string">"^16.13.1"</span>,
+  <span class="hljs-attr">"resolve"</span>: <span class="hljs-string">"1.15.0"</span>,
+  <span class="hljs-attr">"resolve-url-loader"</span>: <span class="hljs-string">"3.1.1"</span>,
+  <span class="hljs-attr">"sass-loader"</span>: <span class="hljs-string">"8.0.2"</span>,
+  <span class="hljs-attr">"semver"</span>: <span class="hljs-string">"6.3.0"</span>,
+  <span class="hljs-attr">"style-loader"</span>: <span class="hljs-string">"0.23.1"</span>,
+  <span class="hljs-attr">"terser-webpack-plugin"</span>: <span class="hljs-string">"2.3.8"</span>,
+  <span class="hljs-attr">"ts-pnp"</span>: <span class="hljs-string">"1.1.6"</span>,
+  <span class="hljs-attr">"url-loader"</span>: <span class="hljs-string">"2.3.0"</span>,
+  <span class="hljs-attr">"webpack"</span>: <span class="hljs-string">"4.42.0"</span>,
+  <span class="hljs-attr">"webpack-dev-server"</span>: <span class="hljs-string">"3.11.0"</span>,
+  <span class="hljs-attr">"webpack-manifest-plugin"</span>: <span class="hljs-string">"2.2.0"</span>,
+  <span class="hljs-attr">"workbox-webpack-plugin"</span>: <span class="hljs-string">"4.3.1"</span>
+},
+</div></code></pre>
+<h2 id="2需要添加项">2.需要添加项</h2>
+<ul>
+<li>
+<ol>
+<li>修改 webpack 默认配置，添加 less,修改 devserver 端口等：config-overrides.js</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>
+<p>代理配置：src/setupProxy.js(可选)</p>
+<p><img src="file:///d:\font-end-knownledge-and-bugs\webpack\img\%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE.png" alt=""></p>
+<p>参考文档：<a href="https://www.html.cn/create-react-app/docs/proxying-api-requests-in-development/">https://www.html.cn/create-react-app/docs/proxying-api-requests-in-development/</a></p>
+</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>加入 eslintrc,规范代码，create-react-app 已经添加，语法校验配置文档可能需要修改</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>
+<p>全局传参
+使用 React 提供的 Context:Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。</p>
+<p>context 的使用方法：<a href="https://react.docschina.org/docs/context.html">https://react.docschina.org/docs/context.html</a></p>
+</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>路由：react—router</li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li>
+<p>ajax 请求：axios 或者 fetch()-&gt;可选</p>
+<p><img src="file:///d:\font-end-knownledge-and-bugs\webpack\img\ajax%E8%AF%B7%E6%B1%82%E6%96%B9%E6%A1%88.png" alt=""></p>
+<p>axios 博主推荐原因：<a href="https://mp.weixin.qq.com/s?__biz=Mzg5MDAzNzkwNA==&amp;mid=2247484063&amp;idx=1&amp;sn=4d55ddaf448d3e3a4b8da9d0d751383c&amp;chksm=cfe3f160f8947876c3daa731de9728aeb257db82055180bb13a53971ace38e6c11921f648f59&amp;mpshare=1&amp;scene=1&amp;srcid=091814womKbYceO891eyNrlA&amp;sharer_sharetime=1600657878914&amp;sharer_shareid=ee2a7847446d9cb19667485c1672fb11#rd">https://mp.weixin.qq.com/s?__biz=Mzg5MDAzNzkwNA==&amp;mid=2247484063&amp;idx=1&amp;sn=4d55ddaf448d3e3a4b8da9d0d751383c&amp;chksm=cfe3f160f8947876c3daa731de9728aeb257db82055180bb13a53971ace38e6c11921f648f59&amp;mpshare=1&amp;scene=1&amp;srcid=091814womKbYceO891eyNrlA&amp;sharer_sharetime=1600657878914&amp;sharer_shareid=ee2a7847446d9cb19667485c1672fb11#rd</a></p>
+<p>或者查看官方文档：<a href="http://www.axios-js.com/zh-cn/docs/">http://www.axios-js.com/zh-cn/docs/</a></p>
+</li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li>使用 ts-&gt;可选</li>
+</ol>
+</li>
+<li>
+<ol start="8">
+<li>单元测试方案：<a href="https://www.html.cn/create-react-app/docs/running-tests/">https://www.html.cn/create-react-app/docs/running-tests/</a></li>
+</ol>
+</li>
+</ul>
+<h2 id="3注意项">3.注意项</h2>
+<ul>
+<li>
+<ol>
+<li>
+<p>压缩插件默认配置 Terser，使用 Uglify 插件似乎会有一些 bug,它不支持压缩 es6，在 webpack4.0 中已经去除</p>
+<p><img src="file:///d:\font-end-knownledge-and-bugs\webpack\img\terser01.png" alt="">，</p>
+</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>
+<p>antd 的按需加载 webpack 已经支持</p>
+<p><img src="file:///d:\font-end-knownledge-and-bugs\webpack\img\antd%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Moment.js 库进入维护状态，由于是比较旧的库，在项目中最好不要使用
+Antd 提出了替换方法：<a href="https://ant-design.gitee.io/docs/react/replace-moment-cn">https://ant-design.gitee.io/docs/react/replace-moment-cn</a>
+请注意 antd 的版本</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>
+<p>不支持修饰器，请不要使用修饰器语法</p>
+<p><img src="file:///d:\font-end-knownledge-and-bugs\webpack\img\react%E4%BF%AE%E9%A5%B0%E5%99%A8.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>不建议暴露配置修改:因为从那时起，你必须自己维护配置和脚本。在这种情况下，我们建议使用 fork react-scripts 和你需要的任何其他软件包，来代替 ejecting 。可以对暴露文件源码进行学习。</li>
+</ol>
+</li>
+</ul>
+<h2 id="4待议事项可能会增加代码量针对不同需求的项目来设置">4.待议事项(可能会增加代码量，针对不同需求的项目来设置)</h2>
+<ul>
+<li>
+<p>1 . 预渲染静态 HTML 文件</p>
+<p><img src="file:///d:\font-end-knownledge-and-bugs\webpack\img\html%E9%A2%84%E6%B8%B2%E6%9F%93.png" alt=""></p>
+<p>官方 demo：<a href="https://github.com/geelen/create-react-app-snapshot">https://github.com/geelen/create-react-app-snapshot</a></p>
+</li>
+<li>
+<ol start="2">
+<li>文件夹结构：css/less 怎么放，image 放哪里，测试模块等
+参考:css 位置 <a href="https://www.html.cn/create-react-app/docs/adding-a-stylesheet/">https://www.html.cn/create-react-app/docs/adding-a-stylesheet/</a>
+public 文件夹的使用 <a href="https://www.html.cn/create-react-app/docs/using-the-public-folder/">https://www.html.cn/create-react-app/docs/using-the-public-folder/</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>proxy 中间层-&gt;可选</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>webpack 打包速度，如果慢，加入其他插件</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>react 系列，webpack，antd 固定版本</li>
+</ol>
+</li>
+</ul>
+
+    </body>
+    </html>

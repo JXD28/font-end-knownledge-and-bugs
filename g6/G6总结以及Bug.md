@@ -82,3 +82,37 @@
 
 但是 paint 只能更新当前 id 相同的节点边等，更新数据源不会重绘
 报错原因是数据源出现的问题，线的 target 指向了不存在节点
+
+## 6.在给连接器添加点击事件的时候，出现不能相应的情况，但是 demo 中却可以实现
+
+```js
+group.addShape('circle', {
+    attrs: {
+        x: 0,
+        y: -30,
+        r: 10,
+        fill: '#096dd9',
+        cursor: 'pointer',
+    },
+    name: 'circle-shape',
+});
+
+graph.on('circle-shape:click', (evt) => {
+    const { item } = evt;
+    graph.updateItem(item, {
+        label: '点击了圆',
+        labelCfg: {
+            style: {
+                fill: '#003a8c',
+                fontSize: 16,
+            },
+        },
+    });
+});
+```
+
+可能与版本有关？使用版本：3.5.8 ，当前文档版本：3.8.0
+
+解决办法：
+
+手动添加判断：拿到点击对象 e.getTarget()

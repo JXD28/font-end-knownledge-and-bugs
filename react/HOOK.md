@@ -308,3 +308,39 @@ setTreeData 放到下边两个 set 函数中间就不行，可能与组件逻辑
 -   于普通的 createRef 的区别：一个函数组件，每执行一次都会重新创建变量，这样 createRef 就会重复创建。而 useRef 是存储在外部的，如果监测到 dom 没有变化，就不会重新创建
 -   useRef 创建的 ref 并不会随着组件的更新而重新构建
 -   于这个特性，在使用 react-hook 的时候，可以使用 useRef 来存储常量。
+
+## 11.使用 useCallback()来存放回调函数
+
+## 12 .深入理解 React useLayoutEffect 和 useEffect 的执行时机
+
+https://blog.csdn.net/yunfeihe233/article/details/106616674/
+
+-   useEffect(create, deps):
+
+该 Hook 接收一个包含命令式、且可能有副作用代码的函数。在函数组件主体内（这里指在 React 渲染阶段）改变 DOM、添加订阅、设置定时器、记录日志以及执行其他包含副作用的操作都是不被允许的，因为这可能会产生莫名其妙的 bug 并破坏 UI 的一致性。使用 useEffect 完成副作用操作。赋值给 useEffect 的函数**会在组件渲染到屏幕之后执行**。你可以把 effect 看作从 React 的纯函数式世界通往命令式世界的逃生通道。
+
+副作用包括：函数组件主体内（这里指在 React 渲染阶段）改变 DOM、添加订阅、设置定时器、记录日志以及执行其他包含副作用的操作都是不被允许的，
+
+-   useLayoutEffect(create, deps):
+
+其函数签名与 useEffect 相同，但它会在**所有的 DOM 变更之后同步调用 effect**。可以使用它来读取 DOM 布局并同步触发重渲染。在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同步刷新。
+
+-   useEffect 和 useLayoutEffect 的区别？
+
+useEffect 在渲染时是异步执行，并且要等到浏览器将所有变化渲染到屏幕后才会被执行。
+
+useLayoutEffect 在渲染时是同步执行，其执行时机与 componentDidMount，componentDidUpdate 一致
+
+-   对于 useEffect 和 useLayoutEffect 哪一个与 componentDidMount，componentDidUpdate 的是等价的？
+
+useLayoutEffect，因为从源码中调用的位置来看，useLayoutEffect 的 create 函数的调用位置、时机都和 componentDidMount，componentDidUpdate 一致，且都是被 React 同步调用，都会阻塞浏览器渲染。
+
+-   useEffect 和 useLayoutEffect 哪一个与 componentWillUnmount 的是等价的？
+
+同上，useLayoutEffect 的 detroy 函数的调用位置、时机与 componentWillUnmount 一致，且都是同步调用。useEffect 的 detroy 函数从调用时机上来看，更像是 componentDidUnmount (注意 React 中并没有这个生命周期函数)。
+
+-   为什么建议将修改 DOM 的操作里放到 useLayoutEffect 里，而不是 useEffect？
+
+可以看到在流程 9/10 期间，DOM 已经被修改，但但浏览器渲染线程依旧处于被阻塞阶段，所以还没有发生回流、重绘过程。由于内存中的 DOM 已经被修改，通过 useLayoutEffect 可以拿到最新的 DOM 节点，并且在此时对 DOM 进行样式上的修改，假设修改了元素的 height，这些修改会在步骤 11 和 react 做出的更改一起被一次性渲染到屏幕上，依旧只有一次回流、重绘的代价。
+
+如果放在 useEffect 里，useEffect 的函数会在组件渲染到屏幕之后执行，此时对 DOM 进行修改，会触发浏览器再次进行回流、重绘，增加了性能上的损耗。

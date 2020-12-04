@@ -354,3 +354,6 @@ useLayoutEffect，因为从源码中调用的位置来看，useLayoutEffect 的 
     - 在两个组件中使用相同的 Hook 会共享 state 吗？不会。自定义 Hook 是一种重用状态逻辑的机制(例如设置为订阅并存储当前值)，所以每次使用自定义 Hook 时，其中的所有 state 和副作用都是完全隔离的。
 
 3. 多个业务逻辑使用多个 useEffect.
+4. useRef 的使用
+    - 问题: let sss = useRef(null) 出现创建两次 ref 再对 sss 赋值
+    - 解决：const sss = useRef(null) sss.current=XXX 。使用 current 来进行对值的存储

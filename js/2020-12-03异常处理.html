@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        111
+        <script>
+            // window.onerror = function (message, source, lineno, colno, error) {
+            //     console.log('捕获到异常：', {
+            //         message,
+            //         source,
+            //         lineno,
+            //         colno,
+            //         error,
+            //     });
+            //     return true; //捕捉到错误之后，浏览器终端不显示红色错误信息
+            // };
+            // Promise.reject('promise error'); //捕获不到
+            // setTimeout(() => {
+            //     Jartto;
+            // });
+            //-----------------------------
+            window.addEventListener('unhandledrejection', function (e) {
+                e.preventDefault();
+                console.log('捕获到异常：', e);
+                return true;
+            });
+
+            Promise.reject('promise error');
+        </script>
+        <img src="./sss" />
+    </body>
+</html>

@@ -116,3 +116,18 @@ graph.on('circle-shape:click', (evt) => {
 解决办法：
 
 手动添加判断：拿到点击对象 e.getTarget()
+
+## 7.右键出现菜单问题
+
+条件：G6 目前使用的版本：3.5.10，官网 G6 版本：4.0.0
+
+-   1.使用最新的方法 new Menu({...})点击 canvas 会打印报错信息，getmodel 找不到
+    ![](img/g6%20contextMenu.png)
+-   2.使用旧版的方法，手动创建 dom
+    ![](img/g6%20contextMenuOldV.png)
+    使用监听来改变
+    ![](img/g6contextMenuListener.png)
+    但是这种方法没有新方法的回调函数，拿不到右击的当前节点
+-   3.使用旧版方法，dom 添加监听函数，g6 context 监听调用回调函数，将 edge 的信息传出去
+-   4.menu 的滚轮事件的放大缩小-> 出现的问题 useRef 会赋值两次 null，原因可能是定义的时候使用 let 而没有使用 const
+-   5.涉及到 useRef 的使用，使用 current 来对数据进行改写

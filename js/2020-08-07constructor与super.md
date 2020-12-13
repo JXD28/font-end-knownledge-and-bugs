@@ -36,7 +36,7 @@ class Point {
 
 constructor()的参数是实例传入的参数
 
-## super():代表调用父类的构造函数
+## super():代表调用父类的构造函数(constructor)
 
 ES5 的继承，实质是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面（Parent.apply(this)）。ES6 的继承机制完全不同，实质是先将父类实例对象的属性和方法，加到 this 上面（所以必须先调用 super 方法），然后再用子类的构造函数修改 this
 

@@ -20,13 +20,29 @@
 //     console.log('result', result); //浏览器中会打印原型上的方法
 // });
 
-class Example {
-    x = 1;
-    string = 'string';
-    constructor() {}
-    getName() {
-        return 'Example';
+//ES6新的实例属性写法，但是报错，可能缺少babel
+// class Example {
+//     x = 1;
+//     string = 'string';
+//     constructor() {}
+//     getName() {
+//         return 'Example';
+//     }
+// }
+// const example = new Example();
+// console.log('example', example);
+
+//测试class不绑定this会怎么样
+
+class Bind {
+    constructor() {
+        this.str = 'hello';
+    }
+    sayHello() {
+        console.log('打印', this);
     }
 }
-const example = new Example();
-console.log('example', example);
+
+const bindInst = new Bind();
+const { sayHello } = bindInst;
+sayHello();

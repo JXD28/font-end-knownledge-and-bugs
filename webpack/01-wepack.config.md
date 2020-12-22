@@ -181,8 +181,10 @@ mode:'production'
 
 ```js
 plugins: [
+    //该插件的主要功能是将打包之后的文件通过script绑到html上
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./src/index.html",//可以是模板引擎ejs等
+      //压缩
       minify:{
         //移除空格
         collapseWhitespace:true,

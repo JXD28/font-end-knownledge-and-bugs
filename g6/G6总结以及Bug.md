@@ -141,3 +141,9 @@ graph.on('circle-shape:click', (evt) => {
 因此要在设置之前清除上一次设置的样式
 
 这样也避免了 hasState()判断的错误
+
+## 9.引入 toolBar 之后，自定义 shape 的动作不会入栈
+
+可能原因： 没有将 graph.updateItem(item, model, stack) ，参数 stack 设置成 true
+
+![](img/updateItem.png)

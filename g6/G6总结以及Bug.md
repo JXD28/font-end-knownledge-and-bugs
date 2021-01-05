@@ -147,3 +147,5 @@ graph.on('circle-shape:click', (evt) => {
 可能原因： 没有将 graph.updateItem(item, model, stack) ，参数 stack 设置成 true
 
 ![](img/updateItem.png)
+
+## 10.开启布局之后节点配置 x，y 不生效

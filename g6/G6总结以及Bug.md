@@ -149,3 +149,9 @@ graph.on('circle-shape:click', (evt) => {
 ![](img/updateItem.png)
 
 ## 10.开启布局之后节点配置 x，y 不生效
+
+## 11.graph.on() 回调函数，事件对象
+
+-   event.x 与 event.y 针对在画布元素不开启自适应 fitView/fitCenter 的时候
+-   如果开了自适应
+    -   鼠标原生事件：originalEvent 属性,右击出现菜单栏使用 offsetX/offsetY

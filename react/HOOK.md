@@ -355,5 +355,12 @@ useLayoutEffect，因为从源码中调用的位置来看，useLayoutEffect 的 
 
 3. 多个业务逻辑使用多个 useEffect.
 4. useRef 的使用
+
     - 问题: let sss = useRef(null) 出现创建两次 ref 再对 sss 赋值
     - 解决：const sss = useRef(null) sss.current=XXX 。使用 current 来进行对值的存储
+
+5. 获取到的 state 值不是最新的:
+    - 原因：闭包
+    - 解决办法：使用函数方式获取最新的值
+      ![](img/columns-antd.png)
+      ![](img/function-update.png)

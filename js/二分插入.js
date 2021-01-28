@@ -6,7 +6,7 @@ function add(num) {
         return;
     }
     let left = 0;
-    let right = data.length;
+    let right = data.length - 1;
     while (left < right) {
         const mid = Math.floor((left + right) / 2);
         if (data[mid] === num) {
@@ -18,7 +18,7 @@ function add(num) {
             --right;
         }
     }
-    data.splice(left, 0, num);
+    data.splice(right, 0, num);
 }
 
 add(3);

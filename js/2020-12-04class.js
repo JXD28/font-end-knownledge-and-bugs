@@ -32,17 +32,29 @@
 // const example = new Example();
 // console.log('example', example);
 
-//测试class不绑定this会怎么样
+// //测试class不绑定this会怎么样
+// class Bind {
+//     constructor() {
+//         this.str = 'hello';
+//     }
+//     sayHello() {
+//         console.log('打印', this);
+//     }
+// }
+
+// const bindInst = new Bind();
+// const { sayHello } = bindInst;
+// sayHello(); //打印 undefined
+
+//箭头函数是实例属性的验证
 
 class Bind {
-    constructor() {
-        this.str = 'hello';
-    }
-    sayHello() {
+    sayHelloFunction() {
         console.log('打印', this);
     }
+    sayHello = () => {
+        console.log('打印', this);
+    };
 }
 
-const bindInst = new Bind();
-const { sayHello } = bindInst;
-sayHello();
+const bind = new Bind();

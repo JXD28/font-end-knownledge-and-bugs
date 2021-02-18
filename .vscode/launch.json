@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/js/2020-12-04class.js",
+            "skipFiles": ["<node_internals>/**"]
+        }
+    ]
+}

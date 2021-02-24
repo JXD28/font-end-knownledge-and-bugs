@@ -57,6 +57,9 @@ https://blog.csdn.net/mus123/article/details/107711168
       },
 ```
 
+-   css-loader 的作用：帮我们分析出各个 css 文件之间的关系，把各个 css 文件合并成一段 css；
+-   配合使用 style-loader 将 css 文件将加入到 head 中
+
 ## 2.css 压缩:optimize-css-assets-webpack-plugin
 
 直接用
@@ -194,6 +197,11 @@ plugins: [
     }),
   ],
 ```
+
+## file-loader url-loader
+
+-   file-loader:将图片的等文件在打包的时候放入指定文件夹，并改变引用时的路径
+-   url-loader：按照 limit 大小将图片解析成 base64 字符串，放在 js 文件中
 
 ---
 

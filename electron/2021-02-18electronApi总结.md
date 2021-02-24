@@ -22,6 +22,9 @@ Electron's process 对象继承 Node.js process object。
         -   openDevTools
         -   reload
 
--   IpcMain.on('xxx',(event,arg)=>{
+-   ipcMain.on('xxx',(event,arg)=>{
     event.sender.send('xxx',data)
     })
+
+-   ipcRenderer.on() //监听 channel, 当有新消息到达，使用 listener(event, args...) 调用 listener
+-   ipcRenderer.send() //通过 channel 向主进程发送异步消息，也可以发送任意参数.参数会被 JSON 序列化，之后就不会包含函数或原型链.主进程，通过使用 ipcMain 模块来监听 channel，从而处理消息
